@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+   Week 6B
+   Name:	Alex Paquette
+   Date:	10/13/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Visual Pizza Builder</title>
+  <script src="https://kit.fontawesome.com/d34d99bf21.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Italianno&display=swap" rel="stylesheet">
+    <style>
+      body{
+        margin: auto;
+        width: 900px;
+        font-family: 'Italiana', serif;
+        display: flex;
+        flex-flow: column;
+        flex-wrap: nowrap;
+      }
+      a{color: red;}
+      a:hover{color: green;}
+      .row{
+        align-self: center;
+      }
+    </style>
+    <script>
+      var basePrice = 0;
+      var numToppings = 0;
+      var totalCost = 0;
+      var coupon = 1;
+
+      function updateSize(size){
+        basePrice = parseInt(size);
+        totalCost = basePrice;
+        updateCost();
+      }
+
+      function checkToppings(id){
+        if(document.getElementById(id).checked){
+          numToppings++;
+          document.getElementById(id+"Topping").style.opacity = 1;
+        }
+        else{
+          numToppings--;
+          document.getElementById(id+"Topping").style.opacity = 0;
+        }
+        updateCost();
+      }
+
+      function checkDiscount(){
+        if(document.getElementById("couponValue").value == "itsmedio"){
+          coupon = 0.5;
+        }
+        else{
+          coupon = 1;
+        }
+        updateCost();
+      }
+
+      function updateCost(){
+        totalCost = (basePrice + ((basePrice/5)*numToppings))*coupon;
+        document.getElementById("cost").value = "$"+totalCost;
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <div style="text-align: center; padding:25px 0 25px 0;"><img src="Canadorio-Logo.png" style="width:250px;"/></div>
+      <div style="text-align: center; padding:0 0 40px 0;"><a href="CanadorioHomepage.html">HOME</a> &nbsp; <a href="#">REVIEWS</a> &nbsp; <a href="CanadorioPizzaBuilder.html">ORDERS</a></div>
+
+    <div class="row">
+      <form style="background-color: lightgrey; text-align: center;">
+        <h1>Build Your Own Pizza</h1>
+        <h2>Select your pizza size</h2>
+        <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="5">Small</input>
+        <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="10">Medium</input>
+        <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="15">Large</input>
+
+        <h2>Select your toppings</h2>
+        <input onclick="checkToppings(id)" type="checkbox" id="pepperoni" class="toppings">Pepperoni</input>
+        <input onclick="checkToppings(id)" type="checkbox" id="bacon" class="toppings">Bacon</input>
+        <input onclick="checkToppings(id)" type="checkbox" id="mushroom" class="toppings">Mushrooms</input>
+
+        <h2>Do you have a coupon?</h2>
+        <input type="text" id="couponValue" value=""/>
+        <input onclick="checkDiscount()" type="button" id="couponButton" value="Apply Coupon"/>
+
+        <h2>Total</h2>
+        <input type="text" id="cost" value=""/>
+
+        <h2>Your pizza</h2>
+        <p>This is what your pizza will look like.</p>
+        <div style="padding: 0 0 200px 0; position: relative; left: -100px;">
+          <img src="pizza-crust-1.png" style="width:200px; height:200px; position:absolute;">
+          <img src="sauce.png" style="width:200px; height:200px; position:absolute;">
+          <img src="cheese.png" style="width:200px; height:200px; position:absolute;">
+          <img src="pepperoni.png" id="pepperoniTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+          <img src="mushrooms.png" id="mushroomTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+          <img src="bacon.png" id="baconTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div style="clear: both; text-align: center; padding: 25px 0 25px 0">
+        <div>Canadorio Pizza</div>
+        <div>100 College Drive</div>
+        <div>North Bay,  ON</div>
+        <a href="mailto:info@canadoriopizza.com">info@canadoriopizza.com</a>
+        <br/><br/>
+        <div style="font-side: 20px"><a href="#" class="fab fa-twitter"></a> <a href="#" class="fab fa-facebook"></a> <a href="#" class="fab fa-instagram"></a></div>
+      </div>
+    </div>
+  </body>
+</html>

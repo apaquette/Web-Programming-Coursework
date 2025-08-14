@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script>
+      function addTheNumbers(){
+        var number1=document.getElementById("number1").value;
+        var number2=document.getElementById("number2").value;
+        var theAnswer = parseInt(number1) + parseInt(number2);
+        document.getElementById("theAnswer").value=theAnswer;
+      }
+    </script>
+  </head>
+
+  <body>
+    <form>
+      <input type="text" id="number1" /> + <input type="text" id="number2" /> =
+      <input type="text" id="theAnswer" /> <input type="button" value="Calculate"
+      onclick="addTheNumbers()" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<!--
+
+   Name:	Alex Paquette
+   Date:	11/10/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Array as an Object</title>
+    <style>
+    </style>
+
+  </head>
+  <body>
+    <h1 id="1"></h1>
+    <h1 id="2"></h1>
+    <h1 id="3"></h1>
+    <script>
+      var theUser = {
+        userName: ["David Dunkley","Alex Paquette"],
+        userBio: ["David is a professor at Canadore and the owner of webfirm Macroblu", "Alex is a student at Canadore"],
+        userEmail: ["david.dunkley@canadorecollege.com", "alexandre.d.paquette@gmail.com"]
+      };
+      document.getElementById("1").innerHTML = theUser["userName"][1];
+      document.getElementById("2").innerHTML = theUser["userBio"][1];
+      document.getElementById("3").innerHTML = theUser["userEmail"][1];
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>For Loop</title>
+    <body>
+      <form>
+        <input type="text" id="a1"><select id="theOperator">
+          <option value="+">Add</option>
+          <option value="-">Subtract</option>
+        </select>
+        <input type="text" id="a2">
+        <input type="button" value="=" onClick="myMath()">
+        <input type="text" id="a3"><br/>
+      </form>
+      <script>
+        function myMath(){
+          var num1 = parseFloat(document.getElementById("a1").value);
+          var num2 = parseFloat(document.getElementById("a2").value);
+          var theOperator = document.getElementById("theOperator").value;
+          switch(theOperator){
+            case"+":
+              document.getElementById("a3").value=num1+num2;
+              break;
+            case "-":
+              document.getElementById("a3").value = num1 - num2;
+              break;
+          }
+        }
+      </script>
+    </body>
+  </head>
+</html>

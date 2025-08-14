@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script>
+      function writeMessage(){
+        document.getElementById("theMessage").innerHTML="Hello World!!!";
+      }
+      function writeMessage2(){
+        document.getElementById("theMessage").innerHTML="Goodbye World";
+      }
+    </script>
+  </head>
+
+  <body onload="writeMessage()">
+    <h1 id="theMessage"></h1>
+    <form>
+      <input type="button" onclick="writeMessage2()" value="Click Me"></input>
+    </form>
+  </body>
+</html>

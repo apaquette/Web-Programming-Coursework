@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Update Content</title>
+    <script>
+      function changeIt(){
+        document.getElementById("theInputText").value="Updated!";
+        document.getElementById("theStrongText").innerHTML="Updated too!";
+        document.getElementById("theStrongText").className="blue";
+      }
+    </script>
+    <style>
+      .red { color:red; }
+      .blue { color:blue; }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" value="Old Text" id="theInputText"/><br>
+      <strong class ="red" id="theStrongText">Old Strong Text</strong><br>
+      <input type="button" value="Update" onclick="changeIt()"/>
+    </form>
+  </body>
+</html>

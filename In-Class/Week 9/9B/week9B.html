@@ -1,0 +1,218 @@
+<!doctype html>
+<!--
+   Name:	Alex Paquette
+   Date:	11/17/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Hand of Cards</title>
+    <style>
+      body{
+        display:flex;
+        flex-flow: column;
+        align-items: center;
+        width: 100%;
+      }
+      .cards{
+        display:flex;
+        flex-flow: row wrap;
+        justify-content: center;
+      }
+      img{
+        margin: 10px 10px 10px 10px;
+      }
+    </style>
+    <script>
+      var cards = [];
+
+      //these two arrays are used to determine win conditions
+      var values = [];
+      var suits = [];
+
+      function playPoker(){
+        cards = getCards(5);
+
+        //separate values and suites
+        for (var i = 0; i < cards.length; i++){
+          values[i] = cards[i].values;
+          suits[i] = cards[i].suits;
+        }
+
+        /*Winning condition*/
+        if(royalFlush()){
+          console.log("Royal Flush");
+        }else if(straightFlush()){
+          console.log("Straight Flush");
+        }else if(ofAKind(4)){
+          console.log("Four of a kind");
+        }else if(fullHouse()){
+          console.log("Full house");
+        }else if(flush()){
+          console.log("Flush");
+        }else if(straight()){
+          console.log("Straight");
+        }else if(ofAKind(3)){
+          console.log("Three of a kind");
+        }else if(twoPairs()){
+          console.log("Two pairs");
+        }else if(ofAKind(2)){
+          console.log("Pair");
+        }
+
+        showCards("cards_div");
+      }
+
+      //generates a number of cards from 1-52 where each number corresponds to a unique card in a standard deck
+      function getCards(numCards){
+        var rawCards = [];
+        var sortedCards = [];
+        var i = 0;
+
+        do{//make sure there are no duplicate Cards
+          var num = Math.floor(Math.random() * 51)+1;
+          if(rawCards.includes(num)==false){
+            rawCards.push(num);
+            i++;
+          }
+        }while(i < numCards);
+
+        //get the value and suits from the raw card values
+        for(var num = 0; num < numCards; num++){
+          cards.push({'values': (rawCards[num]%13), 'suits': (Math.floor((rawCards[num]-1)/13))});
+          if(rawCards[num].values == 0){//assign 13 to Kind for sorting purposes
+            rawCards[num].values = 13;
+          }
+        }
+
+        //test cards
+        /*cards = [
+          {"values": 1, "suits": 0},
+          {"values": 10, "suits": 0},
+          {"values": 11, "suits": 0},
+          {"values": 12, "suits": 0},
+          {"values": 13, "suits": 1}
+        ];*/
+
+        cards.sort(function(a, b){return a.values-b.values});//sort cards by value
+
+        return sortedCards;
+      }
+
+      //displays the user's card hand
+      function showCards(elemID){
+        var elem = "";
+        for(var num = 0; num < cards.length; num++){
+          cards[num].values = getCardValue(cards[num].values);
+          cards[num].suits = getCardSuit(cards[num].suits);
+          elem += '<img src=" ' + (cards[num].values) + (cards[num].suits) + '.svg"/>';
+        }
+        document.getElementById(elemID).innerHTML = elem;
+      }
+
+      //returns the value of a card, used for displaying cards
+      function getCardValue(val){
+        switch(val){
+          case 1:
+            return "A";
+            break;
+          case 11:
+            return "J";
+            break;
+          case 12:
+            return "Q";
+            break;
+          case 13:
+            return "K";
+            break;
+          default:
+            return (val);
+            break;
+        }
+      }
+
+      //returns the suit of a card, used for displaying cards
+      function getCardSuit(suit){
+        switch(suit){
+          case 0:
+            return "C";
+            break;
+          case 1:
+            return "D";
+            break;
+          case 2:
+            return "H";
+            break;
+          case 3:
+            return "S";
+            break;
+          }
+      }
+
+      /*CHECK WIN CONDITIONS FUNCTIONS*/
+      //check for royal flush (straight starting from 10 + flush)
+      function royalFlush(){
+        return (flush() && straight() && values[0] == 1 && values[1] == 10);
+      }
+
+      //check for straight flush (straight + flush)
+      function straightFlush(){
+        return (straight() && flush());
+      }
+
+      //check for full house (three of a kind plus a pair)
+      function fullHouse(){
+          return (ofAKind(3) && ofAKind(2));
+      }
+
+      //check for flush (five of the same suit)
+      function flush(){
+        return (checkDuplicates(suits).includes(5));
+      }
+
+      //check for cards in a sequence
+      function straight(){
+        var sequence = 0;
+        if(values[0] == 1 && values[1] == 10){//check for "royal" straight
+          sequence++;
+          for(var x = 1; x < (values.length - 1); x++){
+            if(values[x]-values[x+1]){
+              sequence++;
+            }
+          }
+        }else{//normal sequence
+          for(var x = 0; x < (values.length - 1); x++){
+            if(values[x]-values[x+1]){
+              sequence++;
+            }
+          }
+        }
+        if(sequence == 4){
+          return true;
+        }
+        return false;
+      }
+
+      //check for two pairs
+      function twoPairs(){
+          return (checkDuplicates(checkDuplicates(values))["2"] == 2);
+      }
+
+      //function will check for x of a kind. used for pair, three of a kind, and four of a kind
+      function ofAKind(num){
+          return (checkDuplicates(values).includes(num));
+      }
+
+      //count duplicates in an array
+      function checkDuplicates(array){
+        const counts = [];
+        array.forEach(function(x) {counts[x] = (counts[x] || 0)+1;});
+        return counts;
+      }
+
+    </script>
+  </head>
+  <body onload="playPoker()">
+    <div id="cards_div"></div>
+  </body>
+</html>

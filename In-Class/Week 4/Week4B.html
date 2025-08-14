@@ -1,0 +1,136 @@
+<!doctype html>
+<!--
+   Week 4B - Canadorio Italian Fresh Pizza
+   Name:	Alex Paquette
+   Date:	10/01/2021
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Image/Text Overlay</title>
+    <script src="https://kit.fontawesome.com/d34d99bf21.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Italianno&display=swap" rel="stylesheet">
+    <style>
+      body{
+        margin: auto;
+        width: 900px;
+        font-family: 'Italiana', serif;
+      }
+      a{color: red;}
+      a:hover{color: green;}
+      .pizzacontainer{
+        position: relative;
+        width: 300px;
+        float: left;
+      }
+      .pizzaimage{
+        display: block;
+      }
+      .pizzaoverlay{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: grey;
+      }
+      .pizzacontainer:hover .pizzaoverlay{
+        opacity:0.75;
+      }
+      .pizzatext{
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: (-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .pizzaRow{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <div style="text-align: center; padding:25px 0 25px 0;"><img src="Canadorio-Logo.png" style="width:250px;"/></div>
+    <div style="text-align: center; padding:0 0 40px 0;"><a href="#">HOME</a> &nbsp; <a href="#">REVIEWS</a> &nbsp; <a href="#">ORDERS</a></div>
+
+    <div class="pizzaRow">
+      <div class="pizzacontainer">
+        <img src="pizza-1.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Stricken Chicken</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-10.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Golden Fowl</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-3.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Mushroom Bloom</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-4.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Ultima Arugula</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-5.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Poppin' Pepperoni</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-6.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Relief Bay Leaf</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-12.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Breezy Cheesy</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-8.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Greeny Swirly</div>
+        </div>
+      </div>
+      <div class="pizzacontainer">
+        <img src="pizza-9.jpg" class="pizzaimage"></img>
+        <div class="pizzaoverlay">
+          <div class="pizzatext">Greek Unique</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding: 25px 0 25px 0">
+      <div>Canadorio Pizza</div>
+      <div>100 College Drive</div>
+      <div>North Bay,  ON</div>
+      <a href="mailto:info@canadoriopizza.com">info@canadoriopizza.com</a>
+      <br/><br/>
+      <div style="font-side: 20px"><a href="#" class="fab fa-twitter"></a> <a href="#" class="fab fa-facebook"></a> <a href="#" class="fab fa-instagram"></a></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<!--
+   Week 5B - Visual Pizza Builder
+   Name:	Alex Paquette
+   Date:	10/17/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Visual Pizza Builder - Alex Paquette</title>
+    <style>
+    </style>
+    <script>
+      var basePrice = 0;
+      var numToppings = 0;
+      var totalCost = 0;
+      var coupon = 1;
+
+      function updateSize(size){
+        basePrice = parseInt(size);
+        totalCost = basePrice;
+        updateCost();
+      }
+
+      function checkToppings(id){
+        if(document.getElementById(id).checked){
+          numToppings++;
+          document.getElementById(id+"Topping").style.opacity = 1;
+        }
+        else{
+          numToppings--;
+          document.getElementById(id+"Topping").style.opacity = 0;
+        }
+        updateCost();
+      }
+
+      function checkDiscount(){
+        if(document.getElementById("couponValue").value == "itsmedio"){
+          coupon = 0.5;
+        }
+        else{
+          coupon = 1;
+        }
+        updateCost();
+      }
+
+      function updateCost(){
+        totalCost = (basePrice + ((basePrice/5)*numToppings))*coupon;
+        document.getElementById("cost").value = "$"+totalCost;
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <h1>Build Your Own Pizza</h1>
+      <h2>Select your pizza size</h2>
+      <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="5">Small</input>
+      <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="10">Medium</input>
+      <input onclick="updateSize(value)" type="radio" name="pizzaSize" value="15">Large</input>
+
+      <h2>Select your toppings</h2>
+      <input onclick="checkToppings(id)" type="checkbox" id="pepperoni" class="toppings">Pepperoni</input>
+      <input onclick="checkToppings(id)" type="checkbox" id="bacon" class="toppings">Bacon</input>
+      <input onclick="checkToppings(id)" type="checkbox" id="mushroom" class="toppings">Mushrooms</input>
+
+      <h2>Do you have a coupon?</h2>
+      <input type="text" id="couponValue" value=""/>
+      <input onclick="checkDiscount()" type="button" id="couponButton" value="Apply Coupon"/>
+
+      <h2>Total</h2>
+      <input type="text" id="cost" value=""/>
+
+      <h2>Your pizza</h2>
+      <p>This is what your pizza will look like.<br/>
+      <img src="pizza-crust-1.png" style="width:200px; height:200px; position:absolute;">
+      <img src="sauce.png" style="width:200px; height:200px; position:absolute;">
+      <img src="cheese.png" style="width:200px; height:200px; position:absolute;">
+      <img src="pepperoni.png" id="pepperoniTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+      <img src="mushrooms.png" id="mushroomTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+      <img src="bacon.png" id="baconTopping" style="width:200px; height:200px; position:absolute; opacity: 0;">
+      </p>
+    </form>
+  </body>
+</html>

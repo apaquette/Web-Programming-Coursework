@@ -1,0 +1,103 @@
+<!doctype html>
+<!--
+   Name:	Alex Paquette
+   Date:	11/05/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Lotto Ticket</title>
+    <style>
+      body{
+        margin: auto;
+        width: 500px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+      }
+      img{
+        position: fixed;
+        left:40%;
+        top:100px;
+      }
+      .upper,.lower{
+        position: fixed;
+        left: 40%;
+        width: 385px;
+        text-align: center;
+      }
+      .upper {
+        top: 315px;
+      }
+      .lower {
+          top: 565px;
+          font-size: 25px;
+      }
+    </style>
+    <script>
+      /*ALEX'S CODE*/
+      function generateNumbers(){
+        generateTopNumbers();
+        displayNumbers();
+      }
+
+      function generateTopNumbers(){
+        var ranNum = [];
+
+        ranNum[0] = Math.floor((Math.random() * 49) + 1);
+        for(var x = 1; x < 6; x++){
+          do{
+            ranNum[x] = Math.floor((Math.random() * 49) + 1);
+          }while(duplicatesExist(ranNum));
+        }
+        ranNum.sort(function(a, b){return a-b});
+        for(var x = 0; x < 6; x++){
+          document.getElementById("upperNumbers").innerHTML += (ranNum[x] + " ");
+        }
+      }
+
+      function duplicatesExist(array){
+        for(var x = 0; x < array.length; x++){
+          for (var y = x+1; y < array.length; y++){
+              if (array[x] == array[y]){
+                return true;
+              }
+            }
+          }
+        return false;
+      }
+      /*ALEX'S CODE*/
+
+      /*KYLE'S CODE*/
+      var botRandNum1 = Math.floor(Math.random() * 10);
+      var botRandNum2 = Math.floor(Math.random() * 10);
+      var botRandNum3 = Math.floor(Math.random() * 10);
+      var botRandNum4 = Math.floor(Math.random() * 10);
+      var botRandNum5 = Math.floor(Math.random() * 10);
+      var botRandNum6 = Math.floor(Math.random() * 10);
+
+      function displayNumbers() {
+          document.getElementById("lowerNumbers").innerHTML += botRandNum1;
+          document.getElementById("lowerNumbers").innerHTML += "\t";
+          document.getElementById("lowerNumbers").innerHTML += botRandNum2;
+          document.getElementById("lowerNumbers").innerHTML += "\t";
+          document.getElementById("lowerNumbers").innerHTML += botRandNum3;
+          document.getElementById("lowerNumbers").innerHTML += "\t";
+          document.getElementById("lowerNumbers").innerHTML += botRandNum4;
+          document.getElementById("lowerNumbers").innerHTML += "\t";
+          document.getElementById("lowerNumbers").innerHTML += botRandNum5;
+          document.getElementById("lowerNumbers").innerHTML += "\t";
+          document.getElementById("lowerNumbers").innerHTML += botRandNum6;
+
+      }
+      /*KYLE'S CODE*/
+
+    </script>
+  </head>
+  <body onload="generateNumbers()">
+    <img src="lottoticket-empty.png"/>
+    <h1  id="upperNumbers" class="upper"></h1>
+    <div id = "lowerNumbers" class="lower"></div>
+
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+  Title:  Heads or Tails
+   Name:	Alex Paquette
+   Date:  10/20/2021
+ -->
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Heads or Tails - Alex Paquette</title>
+    <style>
+    </style>
+    <script>
+      var headsCounter = 0;
+      var tailsCounter = 0;
+      function flipCoin(){
+        var flip = Math.floor(Math.random() *2);
+        switch (flip){
+          case 0:
+            headsCounter++;
+            document.getElementById("headsCount").value = headsCounter;
+            document.getElementById("coin").src = "heads.jpg";
+            break;
+          case 1:
+            tailsCounter++;
+            document.getElementById("tailsCount").value = tailsCounter;
+            document.getElementById("coin").src = "tails.jpg";
+            break;
+        }
+        if(headsCounter == 5 || tailsCounter == 5){
+          document.getElementById("flipButton").remove();
+          if(headsCounter == 5){
+            document.getElementById("winner").innerHTML = "Heads Win!";
+          }
+          if(tailsCounter == 5){
+            document.getElementById("winner").innerHTML = "Tails Win!";
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Heads or Tails</h1>
+    <img src="heads.jpg" id="coin"/><br/>
+    <input onclick="flipCoin()" type="button" id="flipButton" value="Flip the Coin!!!"/>
+    <p>Heads</p><input type="text" id="headsCount" value=""/>
+    <p>Tails</p><input type="text" id="tailsCount" value=""/>
+    <h1 id="winner" value=""></h1>
+  </body>
+</html>
